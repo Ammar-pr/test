@@ -105,7 +105,44 @@ function get_password_match ($pass,$user) {
 
 // to run the class 
 
+function update_article($title,$cont,$acId) {
+   
+    $sqlhelp = new sqlHelper; 
+    // first avoid to run sql stetment for update tow colum because the user  has tow case
+    // first case update tow colum title , content 
+    // second is update one colune this case will be divded into to cases   
+    // this function have behivar number - > 1,2,3,4,5,6
+    
+    $specfic_article= R::getAll( 'select * from articles where id= "'.$acId.'" ' );
+    
+    // in line 193 the goal is  : get article information on order to check if the user enter new information to be updated for one article
+    $oldTitle=$specfic_article[0][title];
+    $old_Content=$specfic_article[0][article_content];
+    
+    echo "sdfdf" .strcmp ( $oldTitle , trim($title) );
+    if($title!=$oldTitle &  $cont!=$old_Content ){
+      R::exec( 'update articles set title="'.$title.'" ,article_content="'.$cont.'"   where id="'.$acId.'"' ); 
+      
+      echo "update id done for title and content";
+    }else if ($title==$oldTitle &  $cont!=$old_Content ){
+     // in this case we should update only the  article_content coluom  
+        
+        
+        
+          R::exec( 'update articles set article_content="'.$cont.'"   where id="'.$acId.'"' ); 
+        echo "update id done for   content";
+    }else if ($title!=$oldTitle &  $cont==$old_Conten){
+     // in this case we should update only the  title 
+        
+         R::exec( 'update articles set title="'.$title.'"    where id="'.$acId.'"' ); 
+         
+         echo "update is done for  for title only ";
+    }else if ($title==$oldTitle &  $cont==$old_Content ){
+     // in this case we should know that , the user enter same value for the same nothing change !
+       echo "update connot be done because the writer insert same values for title and content  ";
+    }
 
+}
 
 
 
@@ -158,6 +195,37 @@ function process_article() {
 }
 
 
+function dissplay_art_for_user($id) {
+      $sqlhelp = new sqlHelper;
+   $articles= R::getAll( 'select * from articles where user_id= "'.$id.'" ' );
+     $bar = R::convertToBeans( 'user', $articles );  
+          $counter=0;
+     if(count($bar)>0){
+         
+         return $articles;
+         
+//     while ($counter <count($bar)){
+//         echo "<br>";
+//         echo $articles[$counter][id];
+//          echo "<br>";
+//         $counter++;
+//     }
+ } else  {
+        return "none articles"; 
+     }
+     
+}
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
@@ -169,7 +237,9 @@ echo "br";
 
 //$helpme->set_user("am","am");
   // $helpme ->get_password_match("ad","am");
-  $helpme->process_article();
+ $helpme->process_article();
  // $helpme->querying_user("am","am");
+  //$helpme->dissplay_art_for_user(4);
+//$helpme->update_article("zzzz","sdfsdf",10);
  ?>
  
