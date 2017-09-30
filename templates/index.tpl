@@ -40,7 +40,9 @@
       <li class="active"><a href="#">MainPage</a></li>
       <li><a href="#">show Articles </a></li>
       <li><a href="make_new.php"> make a new  Articles</a></li>
+      <li><a href="Update_article.php">Update Article  </a></li>
       <li><a href="#">delete an Article Profile</a></li>
+      
       <li><a href="login.html">login </a></li> 
        <li><a href="logout.php">logout </a></li> 
  

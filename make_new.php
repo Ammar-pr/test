@@ -27,7 +27,7 @@ if (isset($_SESSION["username"]) and isset($_SESSION["password"])){
 if($help->get_password_match($_SESSION["password"],$_SESSION["username"])==true)
 {
    $usuer_id= $help->querying_user($_SESSION["username"],$_SESSION["password"]);
-   //echo "the id is ".$usuer_id;
+   //echo "the id is ".$usuer_id;article
     $smarty->assign('usuer_id',$usuer_id);
     $smarty->display('new_article.tpl');
 }else if($help->get_password_match($_SESSION["password"],$_SESSION["username"])==false){

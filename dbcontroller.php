@@ -50,11 +50,7 @@ while($iterator->valid()) {
 }
 
 
-function close_connection () {
 
-    R::close();
-
-}
 
 
 //$obj = new sqlHelper; // call rb.php inside the constructor
