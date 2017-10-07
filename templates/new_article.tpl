@@ -9,7 +9,13 @@
     <script type="text/javascript" src="jqwidgets/jqwidgets/jqxscrollbar.js"></script>
     <script type="text/javascript" src="jqwidgets/jqwidgets/jqxtextarea.js"></script>
     <script type="text/javascript" src="jqwidgets/jqwidgets/jqxbuttons.js"></script>
-
+<script type="text/javascript">
+    $(document).ready(function () {
+            $('#testForm').jqxValidator({ rules: [
+                { input: '#inputtitle', message: 'Username is required!', action: 'keyup', rule: 'required' },                                   
+                { input: '#jqxTextArea', message: 'Invalid e-mail!', action: 'keyup', rule: 'email' }]
+    });
+</script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#jqxTextArea').jqxTextArea({ width: 500, height: 500, placeHolder: 'Enter a sentence...' });
@@ -58,7 +64,7 @@
 </head>
 <body>
        <form class="form" id="form" target="form-iframe"  method="post" action="Article.php">
-           title :   <input type="text" id="input" name="title"/><br><br>
+           title :   <input type="text" id="inputtitle" name="title"/><br><br>
    article content : <textarea id="jqxTextArea" name="content_article" ></textarea>
           <div style='width: 150px;' id='jqxWidget'>
            
